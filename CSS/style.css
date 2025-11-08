@@ -1,19 +1,24 @@
 html, body {
+    min-height: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 body {
     background-color: #171717;
     font-family: "Red Hat Display", sans-serif;
-    overflow-x: hidden;
+
 }
 
+img, video { max-width: 100%; height: auto; }
+
 h2{
-    font-size: 60px;
+    font-size: clamp(28px, 6vw, 60px);
+    z-index: 1;
 }
 h3{
-    font-size: 50px;
+    font-size: clamp(20px, 4.5vw, 50px);
+    z-index: 1;
 }
 .button{
     display: flex;
@@ -24,7 +29,7 @@ h3{
 
 
 button {
-    border: none;
+    border: #171717 1px solid ;
     border-radius: 50px;
     padding: 10px 30px;
     width: 200px;
@@ -33,6 +38,7 @@ button {
     font-size: 35px;
     font-family: "Momo Trust Display", sans-serif;
     font-weight: 400;
+    z-index: 2;
 }
 .orange {
     background: linear-gradient(90deg, #f1a60a, #f46f03);
@@ -87,6 +93,7 @@ button {
      display: flex;
      justify-content: flex-end;
      align-items: end;
+     z-index: 1;
     }
 
     #serveur {
@@ -107,11 +114,7 @@ button {
         transform: translateX(210px);
     }
 
-@media (prefers-reduced-motion: reduce) {
-    #serveur {
-        transition: none;
-    }
-}
+
 
 /* ===== Animated SVG background ===== */
 body {
@@ -128,7 +131,6 @@ body::after {
     background: url("../pictures/blob.svg") no-repeat bottom left;
     background-size: contain;
     opacity: 1;
-    filter: glow(1);
     pointer-events: none;
     animation: blobSwingReverse 7s ease-in-out infinite alternate;
     z-index: -1;
@@ -145,10 +147,59 @@ body::after {
     100% { transform: rotate(-10deg) translateX(-4vw); }
 }
 
-/* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
-    body::before,
     body::after {
         animation: none;
     }
 }
+@media (max-width: 1100px) {
+    body::after {
+        filter: blur(10px);
+    }
+    .orange {
+        background: linear-gradient(90deg, #f17e0a, #f44303);
+        color: white;
+        transition: background 0.5s ease, color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    #serveur {
+        display: none;
+    }
+    #github-logo {
+        display: none;
+    }
+    .button {
+        align-items: center;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    button {
+        width: 100vb;
+        max-width: 260px;
+        height: auto;
+        padding: 12px 18px;
+        font-size: 20px;
+
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        bottom: -20vb;
+        left: 0;
+        top: auto;
+        transform: translateX(-50%);
+        width: 120vmin;
+        height: 120vmin;
+        background: url("../pictures/blob.svg") no-repeat center bottom;
+        background-size: contain;
+        opacity: 1;
+        pointer-events: none;
+        filter: blur(10px);
+        animation: blobSwingReverse 7s ease-in-out infinite alternate;
+        z-index: -1;
+        will-change: transform;
+    }
+}}
