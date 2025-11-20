@@ -1,8 +1,10 @@
 html, body {
     min-height: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
+
+
 
 body {
     background-color: #171717;
@@ -12,6 +14,7 @@ body {
 
 img, video { max-width: 100%; height: auto; }
 
+/* Style titres */
 h2{
     font-size: clamp(28px, 6vw, 60px);
     z-index: 1;
@@ -20,6 +23,8 @@ h3{
     font-size: clamp(20px, 4.5vw, 50px);
     z-index: 1;
 }
+
+/* Mise en page du conteneur de boutons */
 .button{
     display: flex;
     justify-content: center;
@@ -27,7 +32,13 @@ h3{
     margin: 20px;
 }
 
+/* auto hide pour le scroll */
+.hide {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
 
+/* Style de base des bouton */
 button {
     border: 0 ;
     border-radius: 50px;
@@ -40,6 +51,8 @@ button {
     font-weight: 400;
     z-index: 2;
 }
+
+/* bouton orange */
 .orange {
     background: linear-gradient(90deg, #f1a60a, #f46f03);
     backdrop-filter: blur(10px);
@@ -51,23 +64,25 @@ button {
     background: white;
 }
 
-.gris {
+/*bouton gris */
+.gray {
     background: linear-gradient(90deg, #545454, #2e2e2e);
     backdrop-filter: blur(10px);
     color: white;
     transition: background 0.5s ease, color 0.5s ease;
 }
-.gris:hover {
+.gray:hover {
     background: white;
     color: black;
 }
-.blanc{
+/* bouton blanc */
+.white{
     background: linear-gradient(120deg, #8a8a8a, #b8b8b8);
     backdrop-filter: blur(10px);
     color: black;
     transition: background 0.5s ease, color 0.5s ease;
 }
-.blanc:hover {
+.white:hover {
     background: white;
     color: black;
 }
@@ -82,12 +97,23 @@ button {
     color: #909090;
 }
 
- header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-    }
+/* en-tête */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.header-left {
+    display: flex;
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+}
 
     #icon {
         width: 500px;
@@ -98,46 +124,75 @@ button {
         width: 50px;
         height: auto;
         margin-right: 30px;
+        order: 1;
+
     }
 
+/* Effet hover du cercle */
+.cercle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
 
- footer {
-     display: flex;
-     justify-content: flex-end;
-     align-items: end;
-     z-index: 1;
-    }
+.cercle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
 
-    #serveur {
-        display: block;
-        position: relative;
-        left: 0;
-        bottom: 0; /* colle en bas si souhaité; ajustez selon besoin */
-        margin: 50px;
-        width: 1200px;
-        height: auto;
-        transform: translateX(635px); /* partie coupée par le bord gauche */
-        transition: transform 0.65s ease;
-        z-index: 10; /* reste au-dessus du footer */
-    }
+.cercle .avatar {
+    background: white;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.cercle .gif {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.cercle:hover .avatar {
+    opacity: 0;
+}
+
+.cercle:hover .gif {
+    opacity: 1;
+}
 
 
-    #serveur:hover {
-        transform: translateX(210px);
-    }
-
-
-
-/* ===== Animated SVG background ===== */
+/* Arrière-plan animé blob */
 body {
-    position: relative; /* needed for pseudo-element stacking */
+    position: relative;
+}
+
+body:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 70%;
+    width: 80vmax;
+    height: 80vmax;
+    background: url("../pictures/blob.svg") no-repeat bottom right;
+    background-size: contain;
+    opacity: 1;
+    pointer-events: none;
+    animation: blobSwing 7s ease-in-out infinite alternate;
+    z-index: -1;
+    will-change: transform;
 }
 
 body::after {
     content: "";
     position: absolute;
     top: 40%;
-    left: -35%;
+    right: 65%;
     width: 80vmax;
     height: 80vmax;
     background: url("../pictures/blob.svg") no-repeat bottom left;
@@ -150,7 +205,7 @@ body::after {
 }
 
 @keyframes blobSwing {
-    0%   { transform: rotate(-12deg) translateX(-3vw); }
+    0%   { transform: rotate(-12deg) translateX(-6vw); }
     100% { transform: rotate(12deg)  translateX(3vw); }
 }
 
@@ -163,11 +218,13 @@ body::after {
 
 
 
+/* Réduction des animations et responsivité */
 @media (prefers-reduced-motion: reduce) {
     body::after {
         animation: none;
     }
 }
+/* Lisibilité */
 @media (max-width: 1250px) {
     body::after {
         filter: blur(10px);
@@ -175,10 +232,100 @@ body::after {
     .orange {
         background: linear-gradient(90deg, #f17e0a, #f44303);
         color: white;
-        transition: background 0.5s ease, color 0.5s ease;
+        transition: opacity 0.8s ease, transform 0.65s ease;
     }
 }
 
+.divider-orange{
+    flex-direction: column;
+    display: flex;
+    border-radius: 15px;
+    margin: 20vmax 5vmax 5vmax 5vmax;
+    height: auto;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.80);
+    padding: 5vmax;
+
+    a{
+        color: #f17e0a;
+    }
+
+    h2{
+        font-size: clamp(28px, 4vw, 90px);
+        font-family: "Ubuntu", sans-serif;
+        text-align: left;
+    }
+    p{
+        text-align: center;
+        font-size: clamp(18px, 2vw, 50px);
+        font-family: "Exo", sans-serif;
+
+    }
+    .row {
+        gap: 10vmax;
+        img{
+            align-self: center;
+            width: 20vmax;
+            height: 100%;
+        }
+        display: flex;
+
+    }
+}
+
+.divider-gray{
+    flex-direction: column;
+    display: flex;
+    color: white;
+    border-radius: 15px;
+    margin: 5vmax;
+    height: auto;
+    background-color: rgba(80, 80, 80, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 5vmax;
+
+    a{
+        color: #f1a60a;
+    }
+    h2{
+        font-size: clamp(28px, 4vw, 90px);
+        font-family: "Ubuntu", sans-serif;
+        text-align: left;
+    }
+    p{
+        justify-content: right;
+        text-align: center;
+        font-size: clamp(18px, 2vw, 50px);
+        font-family: "Exo", sans-serif;
+    }
+    .row {
+        gap: 10vmax;
+        img{
+            align-self: center;
+            width: 20vmax;
+            height: 100%;
+        }
+        display: flex;
+
+    }
+}
+
+.footer {
+    display: flex;
+    margin: 1vmax 3vmax auto 3vmax;
+    flex-direction: column;
+    border-top: 3px groove dimgrey;
+    a{
+        margin: 2vb;
+        font-size: clamp(28px, 4vw, 90px);
+        font-family: "Exo", sans-serif;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+    }
+}
+
+/* Ajustements pour mobile */
 @media (max-width: 768px) {
     #serveur {
         display: none;
@@ -200,6 +347,34 @@ body::after {
         font-size: 20px;
 
     }
+    .footer {
+        backdrop-filter: blur(15px);
+        border-radius: 50px;
+        background: rgba(0, 0, 0, 0.1);
+        margin: 2vb;
+        transition: background 0.5s ease;
+    }
+    .footer:hover {
+        background: rgba(24, 24, 24, 0.8);
+    }
+    .divider-orange {
+        .row{
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+        }
+    }
+    .divider-gray {
+        .row{
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+        }
+    }
+
+    body:before {
+        display: none;
+    }
 
     body::after {
         content: "";
@@ -220,6 +395,7 @@ body::after {
         will-change: transform;
     }
 }
+/* Masquer les titres sur tout petits écrans */
 @media (max-height: 600px) {
     h2 {
         display: none;
@@ -228,6 +404,7 @@ body::after {
         display: none;
     }
 }
+/* Masquer l'image serveur sur les petit écrans */
 @media (max-height: 1020px) {
     #serveur {
         display: none;

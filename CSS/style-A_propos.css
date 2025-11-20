@@ -53,12 +53,12 @@ button {
     background: white;
 }
 
-.gris {
+.gray {
     background: linear-gradient(90deg, #545454, #2e2e2e);
     color: white;
     transition: background 0.5s ease, color 0.5s ease;
 }
-.gris:hover {
+.gray:hover {
     background: white;
     color: black;
 }
@@ -154,6 +154,9 @@ body {
     background-color: rgba(0, 0, 0, 0.50);
 }
 .cadre-trois{
+    li{
+        margin-bottom: 20px;
+    }
     color: white;
     padding: 40px;
     border-radius: 15px;

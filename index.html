@@ -1,44 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="CSS/style.css">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="CSS/style.css">
+    <meta name="description" content="Service d'hébergement et cloud privé open-source basé sur Proxmox et Nextcloud.">
     <title>Attenna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<script src="JS/script.js"></script>
 <header>
+ <div class="header-left">
     <a href="https://matthieuleconte1.github.io/SAE14-Site/">
         <img src="pictures/icon.png" alt="icon" id="icon">
+    </a>
+ </div>
+
+        <div class="header-right">
+        <a href="HTML/Matthieu.html">
+            <div class="cercle">
+                <img src="pictures/Matthieu.gif" class="gif" alt="Photo de profil"/>
+                <img src="pictures/avatar.png" class="avatar" alt="avatar"/>
+            </div>
+        </a>
         <a href="https://github.com/matthieuleconte1/SAE14-Site" target="_blank">
             <img src="pictures/github-white-icon.webp" alt="GitHub" id="github-logo">
         </a>
-    </a>
+        </div>
 </header>
 
 <body>
-<div class="centered-text">
+<div class="centered-text" class="intro">
     <h2>Service privé opensource</h2>
-    <h3>D'hebergement et de Cloud.</h3>
+    <h3>D'hébergement et de Cloud.</h3>
 </div>
 
 <div class="button">
     <a href="https://pve.attenna.net" target="_blank">
         <button class="orange">PVE</button>
     </a>
-    <a href="./A_Propos.html">
-        <button class="blanc">A Propos</button>
+    <a href="HTML/A_Propos.html">
+        <button class="white">A Propos</button>
     </a>
     <a href="https://cloud.attenna.net" target="_blank">
-        <button class="gris">Cloud</button>
+        <button class="gray">Cloud</button>
     </a>
 </div>
+    <div class="divider-orange">
+        <h2>A Propos du PVE</h2>
+        <div class="row">
+            <img src="pictures/Proxmox-logo.png" alt="Proxmox"/>
+            <p>
+                PVE est l'acronime de Proxmox Virtual Environement ce qui est un
+                <a href="https://fr.wikipedia.org/wiki/Hyperviseur">hyperviseur</a>
+                libre et Open source permettant de créer,
+                gérer et superviser des machines virtuelles et des conteneurs LXC sur un même serveur,
+                avec une interface web complète et des outils avancés de haute disponibilité,
+                de sauvegarde et de gestion du stockage.</p>
+        </div>
+    </div>
+    <div class="divider-gray">
+        <h2>Et le cloud alors ?</h2>
+        <div class="row">
+            <img src="pictures/Nextcloud_Logo.svg.png" alt="Nextcloud logo"/>
+            <p>
+                Ici, on parle de <a href="https://nextcloud.com">Nextcloud</a>, une plateforme libre et open-source pensée pour le stockage, la synchronisation et
+                le partage de fichiers… mais pas que. Elle propose aussi des outils de collaboration en ligne, un système de
+                gestion des utilisateurs, du chiffrement des données, et un accès sécurisé depuis n’importe quel appareil. C’est
+                comme avoir son propre Google Drive, mais sans les pubs ni les yeux indiscrets de multinationales.
+            </p>
+        </div>
+    </div>
 <footer>
-    <img src="pictures/93ed94069c3906a10f1ea6abe0972656.webp" alt="Serveur" id="serveur"/>
+    <div class="footer">
+        <a href="mailto:matthieu.leconte@etu.unicaen.fr">Contactez-Moi !</a>
+    </div>
 </footer>
 </body>
 </html>
