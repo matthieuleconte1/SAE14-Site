@@ -2,6 +2,7 @@ html, body {
     min-height: 100%;
     height: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 
@@ -50,6 +51,13 @@ button {
     font-family: "Momo Trust Display", sans-serif;
     font-weight: 400;
     z-index: 2;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 /* bouton orange */
@@ -86,7 +94,16 @@ button {
     background: white;
     color: black;
 }
-
+.black {
+    display: none;
+    background: #000000;
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: background 0.5s ease, color 0.5s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    justify-content: center;
+}
 .centered-text {
     text-align: center;
 }
@@ -245,6 +262,7 @@ body::after {
     backdrop-filter: blur(15px);
     background: rgba(255, 255, 255, 0.80);
     padding: 5vmax;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
     a{
         color: #f17e0a;
@@ -272,7 +290,6 @@ body::after {
 
     }
 }
-
 .divider-gray{
     flex-direction: column;
     display: flex;
@@ -283,6 +300,7 @@ body::after {
     background-color: rgba(80, 80, 80, 0.8);
     backdrop-filter: blur(10px);
     padding: 5vmax;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
     a{
         color: #f1a60a;
@@ -312,9 +330,9 @@ body::after {
 
 .footer {
     display: flex;
-    margin: 1vmax 3vmax auto 3vmax;
+    background: #0c0c0c;
+    border-radius: 15px;
     flex-direction: column;
-    border-top: 3px groove dimgrey;
     a{
         margin: 2vb;
         font-size: clamp(28px, 4vw, 90px);
@@ -325,12 +343,41 @@ body::after {
     }
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    opacity: 0.85;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.3);
+}
+
 /* Ajustements pour mobile */
 @media (max-width: 768px) {
     #serveur {
         display: none;
     }
     #github-logo {
+        display: none;
+    }
+    .cercle {
         display: none;
     }
     .button {
@@ -348,9 +395,9 @@ body::after {
 
     }
     .footer {
-        backdrop-filter: blur(15px);
-        border-radius: 50px;
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 25px;
         margin: 2vb;
         transition: background 0.5s ease;
     }
@@ -394,7 +441,11 @@ body::after {
         z-index: -1;
         will-change: transform;
     }
+    .black {
+        display: inline-flex;
+    }
 }
+
 /* Masquer les titres sur tout petits écrans */
 @media (max-height: 600px) {
     h2 {
