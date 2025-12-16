@@ -15,7 +15,7 @@ body {
 
 img, video { max-width: 100%; height: auto; }
 
-/* Style titres */
+/* Heading styles */
 h2{
     font-size: clamp(28px, 6vw, 60px);
     z-index: 1;
@@ -25,7 +25,7 @@ h3{
     z-index: 1;
 }
 
-/* Mise en page du conteneur de boutons */
+/* Button container layout */
 .button{
     display: flex;
     justify-content: center;
@@ -33,13 +33,13 @@ h3{
     margin: 20px;
 }
 
-/* auto hide pour le scroll */
+/* Auto hide while scrolling */
 .hide {
     opacity: 0;
     transition: opacity 0.4s;
 }
 
-/* Style de base des bouton */
+/* Base button styles */
 button {
     border: 0 ;
     border-radius: 50px;
@@ -60,7 +60,7 @@ button:focus {
     box-shadow: none;
 }
 
-/* bouton orange */
+/* Orange button */
 .orange {
     background: linear-gradient(90deg, #f1a60a, #f46f03);
     backdrop-filter: blur(10px);
@@ -72,7 +72,7 @@ button:focus {
     background: white;
 }
 
-/*bouton gris */
+/* Gray button */
 .gray {
     background: linear-gradient(90deg, #545454, #2e2e2e);
     backdrop-filter: blur(10px);
@@ -83,7 +83,7 @@ button:focus {
     background: white;
     color: black;
 }
-/* bouton blanc */
+/* White button */
 .white{
     background: linear-gradient(120deg, #8a8a8a, #b8b8b8);
     backdrop-filter: blur(10px);
@@ -114,7 +114,7 @@ button:focus {
     color: #909090;
 }
 
-/* en-tête */
+/* Header */
 header {
     display: flex;
     align-items: center;
@@ -136,17 +136,36 @@ header {
         width: 500px;
         height: auto;
         margin-right: 15px;
+        position: relative;
+        display: block;
     }
-    #github-logo {
-        width: 50px;
-        height: auto;
-        margin-right: 30px;
-        order: 1;
+#icon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../pictures/icon2.png") no-repeat center;
+    background-size: contain;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+#icon:hover::after {
+    opacity: 1;
+}
+#github-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 30px;
+    order: 1;
+    transition: box-shadow 0.35s ease;
+    border-radius: 999px;
 
-    }
-
-/* Effet hover du cercle */
-.cercle {
+}
+#github-logo:hover {
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+}
+/* Circle hover effect */
+.circle {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -155,36 +174,42 @@ header {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 0 0 rgba(162, 91, 255, 0);
+    transition: box-shadow 0.35s ease;
 }
 
-.cercle img {
+.circle img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
 }
 
-.cercle .avatar {
+.circle .avatar {
     background: white;
     opacity: 1;
     transition: opacity 0.5s ease;
 }
 
-.cercle .gif {
+.circle .gif {
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
-.cercle:hover .avatar {
+.circle:hover .avatar {
     opacity: 0;
 }
 
-.cercle:hover .gif {
+.circle:hover .gif {
     opacity: 1;
 }
 
+.circle:hover {
+    box-shadow: 0 0 18px rgba(162, 91, 255, 0.75);
+}
 
-/* Arrière-plan animé blob */
+
+/* Animated blob background */
 body {
     position: relative;
 }
@@ -235,13 +260,13 @@ body::after {
 
 
 
-/* Réduction des animations et responsivité */
+/* Reduced motion and responsive tweaks */
 @media (prefers-reduced-motion: reduce) {
     body::after {
         animation: none;
     }
 }
-/* Lisibilité */
+/* Legibility */
 @media (max-width: 1250px) {
     body::after {
         filter: blur(10px);
@@ -253,7 +278,7 @@ body::after {
     }
 }
 
-.divider-orange{
+.divider-white{
     flex-direction: column;
     display: flex;
     border-radius: 15px;
@@ -371,13 +396,13 @@ body::after {
 
 /* Ajustements pour mobile */
 @media (max-width: 768px) {
-    #serveur {
+    #server {
         display: none;
     }
     #github-logo {
         display: none;
     }
-    .cercle {
+    .circle {
         display: none;
     }
     .button {
@@ -404,7 +429,7 @@ body::after {
     .footer:hover {
         background: rgba(24, 24, 24, 0.8);
     }
-    .divider-orange {
+    .divider-white {
         .row{
             flex-direction: column;
             align-items: center;
@@ -446,7 +471,7 @@ body::after {
     }
 }
 
-/* Masquer les titres sur tout petits écrans */
+/* Hide headings on very small screens */
 @media (max-height: 600px) {
     h2 {
         display: none;
@@ -455,9 +480,9 @@ body::after {
         display: none;
     }
 }
-/* Masquer l'image serveur sur les petit écrans */
+/* Hide the server image on small screens */
 @media (max-height: 1020px) {
-    #serveur {
+    #server {
         display: none;
     }
 }
