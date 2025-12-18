@@ -32,3 +32,4 @@ Le thème présente un service d’hébergement/virtualisation basé sur **Proxm
 
 - Si certains noms de classes/identifiants paraissent très IA, j’ai utilisé ChatGPT pour m’aider à uniformiser le code en anglais, ce qui a pu renommer certaines choses.
 - Polices : chargées via Google Fonts.
+- Le respect strict des contraintes W3C empêcherait d’obtenir le design souhaité, certaines règles sont donc volontairement assouplies (Balise a).
