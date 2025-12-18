@@ -108,14 +108,14 @@ h3 {
     font-family: "Poppins", sans-serif;
     font-size: clamp(18px, 2vw, 24px);
     line-height: 1.7;
-    max-width: 60ch;
+    width: min(100%, 60ch);
+    flex: 1 1 320px;
     background: rgba(23, 23, 23, 0.65);
-    padding: clamp(24px, 3vw, 40px);
+    padding: clamp(14px, 3vw, 40px);
     border-radius: 36px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: bisque;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    align-self: flex-start;
     white-space: pre-line;
     backdrop-filter: blur(14px);
     transition: box-shadow 0.4s ease;
@@ -218,8 +218,8 @@ header {
     padding: 10px 20px;
     border-radius: 9999px;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(100px);
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(5px);
     border: 2px solid #3b3b3b79;
     transition: background 0.5s ease;
 }
@@ -363,6 +363,23 @@ body {
     }
 }
 
+@media (max-width: 1024px) {
+    .profile-frame {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .Margin-box {
+        width: 100%;
+    }
+
+    .TextBlock {
+        max-width: none;
+        width: 100%;
+    }
+}
 
 
 .footer {
@@ -385,6 +402,17 @@ body {
 @media (max-width: 768px) {
     #server {
         display: none;
+    }
+
+header {
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+
+}
+    .header-left {
+        width: 100%;
+        justify-content: center;
     }
 
     #logo-Github {
