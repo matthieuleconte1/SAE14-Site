@@ -8,7 +8,7 @@ Le thème présente un service d’hébergement/virtualisation basé sur **Proxm
 
 - Site (GitHub Pages) : https://matthieuleconte1.github.io/SAE14-Site/
 
-- Site (Poweredge R730) Attenna.net
+- Site (Poweredge R730) : https://attenna.net
 ## Pages
 
 - Accueil : `index.html`
