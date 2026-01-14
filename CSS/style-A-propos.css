@@ -81,6 +81,15 @@ button {
         justify-content: space-between;
         padding: 10px 20px;
     }
+.header-left {
+    display: flex;
+}
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
     #icon {
         width: 500px;
@@ -112,6 +121,7 @@ button {
     #github-logo:hover {
         box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
     }
+
 
  footer {
      display: flex;
