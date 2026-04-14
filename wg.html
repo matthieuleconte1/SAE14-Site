@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="CSS/style-wg.css">
+    <meta charset="UTF-8">
+    <title>WG - Attenna.net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body id="top">
+<header>
+    <div class="header-left">
+        <a href="https://attenna.net">
+            <img src="pictures/icon.png" alt="icon" id="icon">
+        </a>
+    </div>
+    <div class="header-right">
+        <a href="https://github.com/matthieuleconte1/SAE14-Site" target="_blank">
+            <img src="pictures/github-white-icon.webp" alt="GitHub" id="github-logo">
+        </a>
+    </div>
+</header>
+<main class="wg-center">
+    <button type="button" class="center-pill" data-copy-command="curl -fsSL https://wg.attenna.net | sudo bash">
+        <span class="command-text">curl -fsSL https://wg.attenna.net | sudo bash</span>
+        <span class="copy-icon" aria-hidden="true"></span>
+    </button>
+    <a href="horloge.html" class="terminal-button">Horloge</a>
+</main>
+<div class="wg-lines" aria-hidden="true"></div>
+<script>
+    const copyButton = document.querySelector(".center-pill");
+
+    async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+    }
+
+    copyButton.addEventListener("click", async () => {
+        await copyText(copyButton.dataset.copyCommand);
+        copyButton.classList.remove("copied");
+        void copyButton.offsetWidth;
+        copyButton.classList.add("copied");
+    });
+</script>
+</body>
+</html>

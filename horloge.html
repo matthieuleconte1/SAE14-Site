@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="CSS/style-horloge.css">
+    <title>Horloge Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<main class="terminal-shell">
+    <section class="terminal-window" aria-label="Horloge terminal">
+        <div class="terminal-topbar">
+            <button type="button" class="window-dot" aria-label="Retour page precedente"></button>
+            <span class="window-dot" aria-hidden="true"></span>
+            <span class="window-dot" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-content">
+            <p class="terminal-line muted">attenna@wg:~$ date +"%H:%M:%S"</p>
+            <time id="clock" class="clock" datetime=""></time>
+            <p class="terminal-line">attenna@wg:~$ <span class="cursor">_</span></p>
+        </div>
+    </section>
+</main>
+<script>
+    const clock = document.getElementById("clock");
+
+    function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString("fr-FR", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+        clock.textContent = time;
+        clock.dateTime = now.toISOString();
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    document.querySelector(".window-dot").addEventListener("click", () => {
+        if (window.history.length > 1) {
+            window.history.back();
+            return;
+        }
+
+        window.location.href = "wg.html";
+    });
+</script>
+</body>
+</html>
