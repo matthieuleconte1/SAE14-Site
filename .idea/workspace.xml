@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="55639e3b-4327-4de6-9e6d-058d4416509c" name="Changes" comment="✨ Amélioration de la mise en page et des styles CSS, ajout de nouvelles polices, et réorganisation des éléments d'en-tête dans les fichiers HTML." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;matthieuleconte1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/matthieuleconte1/SAE14-Site.git&quot;,
+    &quot;accountId&quot;: &quot;14346286-e6a3-4e24-8a21-24526918e8b0&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="372BRXJrDrYefHk0HvK1qO2C31P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Post-SAÉ&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55639e3b-4327-4de6-9e6d-058d4416509c" name="Changes" comment="" />
+      <created>1766091277794</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766091277794</updated>
+      <workItem from="1766091279194" duration="74000" />
+      <workItem from="1766091928410" duration="473000" />
+      <workItem from="1766092414583" duration="73000" />
+      <workItem from="1768376438525" duration="536000" />
+      <workItem from="1768467831740" duration="22000" />
+    </task>
+    <task id="LOCAL-00001" summary="✨ Mise à jour de l'index.html avec correction de l'URL, ajout d'un fichier README.md, et ajustements CSS pour le responsive design.">
+      <option name="closed" value="true" />
+      <created>1766091340011</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766091340011</updated>
+    </task>
+    <task id="LOCAL-00002" summary="📄 Mise à jour du README.md pour clarifier l'assouplissement des contraintes W3C">
+      <option name="closed" value="true" />
+      <created>1766092484907</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766092484907</updated>
+    </task>
+    <task id="LOCAL-00003" summary="✨ Amélioration de la mise en page et des styles CSS, ajout de nouvelles polices, et réorganisation des éléments d'en-tête dans les fichiers HTML.">
+      <option name="closed" value="true" />
+      <created>1768376563887</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768376563887</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="✨ Mise à jour de l'index.html avec correction de l'URL, ajout d'un fichier README.md, et ajustements CSS pour le responsive design." />
+    <MESSAGE value=" Mise à jour du README.md pour clarifier l'assouplissement des contraintes W3C" />
+    <MESSAGE value="✨ Amélioration de la mise en page et des styles CSS, ajout de nouvelles polices, et réorganisation des éléments d'en-tête dans les fichiers HTML." />
+    <option name="LAST_COMMIT_MESSAGE" value="✨ Amélioration de la mise en page et des styles CSS, ajout de nouvelles polices, et réorganisation des éléments d'en-tête dans les fichiers HTML." />
+  </component>
+</project>
