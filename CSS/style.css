@@ -1,6 +1,5 @@
-html, body {
+html {
     min-height: 100%;
-    height: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -8,9 +7,11 @@ html, body {
 
 
 body {
+    min-height: 100vh;
     background-color: #171717;
     font-family: "Red Hat Display", sans-serif;
     font-size: 18px;
+    overflow-x: hidden;
 
 }
 
@@ -58,6 +59,26 @@ h3:hover {
     margin: 20px;
 }
 
+.button a {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.pve-dropdown {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.pve-dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 16px;
+}
+
 /* Auto hide while scrolling */
 .hide {
     opacity: 0;
@@ -66,8 +87,11 @@ h3:hover {
 
 /* Base button styles */
 button {
-    border: 0 ;
-    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--button-border, rgba(255, 255, 255, 0.22));
+    border-radius: 28px;
     padding: 20px 30px;
     width: 200px;
     height: 100px;
@@ -75,59 +99,211 @@ button {
     font-size: clamp(24px, 3.5vw, 30px);
     font-family: "Momo Trust Display", sans-serif;
     font-weight: 400;
+    color: var(--button-color, #ffffff);
+    background: var(--button-bg, rgba(255, 255, 255, 0.12));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        inset 0 -20px 35px rgba(0, 0, 0, 0.16),
+        0 14px 34px rgba(0, 0, 0, 0.28);
     z-index: 2;
     outline: none;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
 
-button:focus {
-    outline: none;
-    box-shadow: none;
+button::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 34%),
+        radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.42), transparent 28%);
+    opacity: 0.42;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
+
+button::after {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 30% 30%, var(--button-glow, rgba(255, 255, 255, 0.18)), transparent 34%),
+        radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.2), transparent 28%);
+    opacity: 0.34;
+    filter: blur(18px);
+    transform: translate(-12%, -8%) rotate(0deg);
+    animation: buttonGlowDrift 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 4px;
+}
+
 button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+    transform: translateY(-6px);
+    border-color: var(--button-border-hover, rgba(255, 255, 255, 0.5));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -18px 34px rgba(0, 0, 0, 0.12),
+        0 20px 42px rgba(0, 0, 0, 0.36),
+        0 0 26px var(--button-glow, rgba(255, 255, 255, 0.18));
+    filter: saturate(1.1);
+}
+
+button:hover::before {
+    opacity: 0.7;
+    transform: translateY(-8%);
+}
+
+button:hover::after {
+    opacity: 0.62;
+    animation-duration: 3.2s;
+}
+
+button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+@keyframes buttonGlowDrift {
+    from {
+        transform: translate(-14%, -10%) rotate(-8deg);
+    }
+    to {
+        transform: translate(10%, 8%) rotate(10deg);
+    }
 }
 
 /* Orange button */
 .orange {
-    background: linear-gradient(90deg, #f1a60a, #f46f03);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: background 0.5s ease, color 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    --button-bg: linear-gradient(135deg, rgba(255, 184, 38, 0.96), rgba(244, 88, 3, 0.94));
+    --button-color: #ffffff;
+    --button-border: rgba(255, 214, 133, 0.54);
+    --button-border-hover: rgba(255, 236, 180, 0.8);
+    --button-glow: rgba(244, 111, 3, 0.48);
 }
-.orange:hover {
-    color: black;
-    background: white;
+
+.pve-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pve-label {
+    position: relative;
+    z-index: 1;
+    transform: translateX(0);
+    transition: transform 0.24s ease 0s;
+}
+
+.pve-dropdown:hover .pve-label,
+.pve-dropdown:focus-within .pve-label {
+    transform: translateX(-14px);
+    transition-delay: 1s;
+}
+
+.pve-caret {
+    position: absolute;
+    top: 50%;
+    right: 42px;
+    z-index: 1;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: translateY(-50%) rotate(180deg);
+    transition: opacity 0.2s ease 0s, transform 0.24s ease 0s;
+}
+
+.pve-dropdown:hover .pve-caret,
+.pve-dropdown:focus-within .pve-caret {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg);
+    transition-delay: 1s, 1s;
+}
+
+.pve-mini {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border: 1px solid rgba(255, 184, 38, 0.76);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 38%),
+        rgba(23, 23, 23, 0.34);
+    color: #ffb826;
+    font-family: "Momo Trust Display", sans-serif;
+    font-size: clamp(24px, 3.5vw, 30px);
+    line-height: 1;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 14px 32px rgba(0, 0, 0, 0.34),
+        0 0 18px rgba(244, 111, 3, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -8px) scale(0.94);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    transition: opacity 0.24s ease 0s, transform 0.24s ease 0s, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.pve-dropdown:hover .pve-mini,
+.pve-dropdown:focus-within .pve-mini {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0) scale(1);
+    transition-delay: 1s, 1s, 0s, 0s;
+}
+
+.pve-mini:hover,
+.pve-mini:focus-visible {
+    border-color: rgba(255, 214, 133, 0.95);
+    color: #ffd685;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 18px 38px rgba(0, 0, 0, 0.38),
+        0 0 30px rgba(244, 111, 3, 0.38);
 }
 
 /* Gray button */
 .gray {
-    background: linear-gradient(90deg, #545454, #2e2e2e);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: background 0.5s ease, color 0.5s ease , transform 0.25s ease, box-shadow 0.25s ease;
-}
-.gray:hover {
-    background: white;
-    color: black;
+    --button-bg: linear-gradient(135deg, rgba(94, 94, 94, 0.8), rgba(23, 23, 23, 0.84));
+    --button-color: #ffffff;
+    --button-border: rgba(255, 255, 255, 0.22);
+    --button-border-hover: rgba(255, 255, 255, 0.48);
+    --button-glow: rgba(255, 255, 255, 0.2);
 }
 /* White button */
 .white{
-    background: linear-gradient(120deg, #8a8a8a, #b8b8b8);
-    backdrop-filter: blur(10px);
-    color: black;
-    transition: background 0.5s ease, color 0.5s ease , transform 0.25s ease, box-shadow 0.25s ease;
-}
-.white:hover {
-    background: white;
-    color: black;
+    --button-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(164, 164, 164, 0.62));
+    --button-color: #111111;
+    --button-border: rgba(255, 255, 255, 0.62);
+    --button-border-hover: rgba(255, 255, 255, 0.92);
+    --button-glow: rgba(255, 255, 255, 0.36);
 }
 .black {
     display: none;
-    background: #000000;
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: background 0.5s ease, color 0.5s ease;
+    --button-bg: linear-gradient(135deg, rgba(30, 30, 30, 0.92), rgba(0, 0, 0, 0.88));
+    --button-color: #ffffff;
+    --button-border: rgba(255, 255, 255, 0.16);
+    --button-border-hover: rgba(255, 255, 255, 0.42);
+    --button-glow: rgba(162, 91, 255, 0.34);
     outline: none;
     -webkit-tap-highlight-color: transparent;
     justify-content: center;
@@ -166,17 +342,12 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     margin-right: 20px;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    background:
-        linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
-        rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
+    color: #ffffff;
     text-decoration: none;
-    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    transition: filter 0.3s ease, transform 0.25s ease;
 }
 
 .vpn-circle svg {
@@ -185,33 +356,32 @@ header {
     fill: none;
 }
 
-.vpn-icon-globe,
-.vpn-icon-grid {
-    stroke: #061109;
-    stroke-width: 2.25;
+.vpn-icon-plug {
+    stroke: currentColor;
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.vpn-icon-grid {
-    opacity: 0.82;
+.vpn-icon-leg {
+    opacity: 1;
 }
 
-.vpn-icon-globe {
-    fill: none;
+.vpn-circle:hover .vpn-icon-upper {
+    transform: translate(-2px, 2px);
+}
+
+.vpn-circle:hover .vpn-icon-lower {
+    transform: translate(2px, -2px);
+}
+
+.vpn-circle:hover .vpn-icon-leg {
+    opacity: 0;
 }
 
 .vpn-circle:hover {
-    border-color: rgba(80, 255, 145, 0.62);
-    background:
-        linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)),
-        rgba(255, 255, 255, 1);
-    box-shadow: 0 0 22px rgba(255, 255, 255, 0.34);
-}
-
-.vpn-circle:hover .vpn-icon-globe,
-.vpn-circle:hover .vpn-icon-grid {
-    stroke: #061109;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75));
 }
 
     #icon {
@@ -299,7 +469,7 @@ body {
 body:before {
     content: "";
     position: absolute;
-    top: 100%;
+    top: 100vh;
     left: 70%;
     width: 80vmax;
     height: 80vmax;
@@ -315,7 +485,7 @@ body:before {
 body::after {
     content: "";
     position: absolute;
-    top: 40%;
+    top: 40vh;
     right: 65%;
     width: 80vmax;
     height: 80vmax;
@@ -344,7 +514,13 @@ body::after {
 
 /* Reduced motion and responsive tweaks */
 @media (prefers-reduced-motion: reduce) {
+    body:before,
     body::after {
+        animation: none;
+    }
+    button::after,
+    .divider-white::after,
+    .divider-gray::after {
         animation: none;
     }
 }
@@ -354,20 +530,22 @@ body::after {
         filter: blur(10px);
     }
     .orange {
-        background: linear-gradient(90deg, #f17e0a, #f44303);
-        color: white;
-        transition: opacity 0.8s ease, transform 0.65s ease;
+        --button-bg: linear-gradient(135deg, rgba(255, 135, 10, 0.96), rgba(244, 67, 3, 0.94));
     }
 }
 
 .divider-white{
+    position: relative;
+    overflow: hidden;
     flex-direction: column;
     display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 15px;
     margin: 20vmax 5vmax 5vmax 5vmax;
     height: auto;
-    backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.80);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    background: rgba(255, 255, 255, 0.58);
     padding: 5vmax;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -398,19 +576,64 @@ body::after {
 
     }
 }
+.divider-white::before,
+.divider-gray::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 35%),
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.45), transparent 28%);
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.divider-white::after,
+.divider-gray::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: 0;
+    background: url("../pictures/blob.svg") center / 60% no-repeat;
+    opacity: 0.12;
+    filter: blur(18px);
+    animation: liquidGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.divider-white > *,
+.divider-gray > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes liquidGlow {
+    from {
+        transform: translate(-3%, -2%) rotate(-8deg) scale(1);
+    }
+    to {
+        transform: translate(3%, 2%) rotate(8deg) scale(1.08);
+    }
+}
+
 .divider-white:hover{
     transform: translateY(-6px);
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6);
 }
 .divider-gray{
+    position: relative;
+    overflow: hidden;
     flex-direction: column;
     display: flex;
     color: white;
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 15px;
     margin: 5vmax;
     height: auto;
-    background-color: rgba(80, 80, 80, 0.8);
-    backdrop-filter: blur(10px);
+    background-color: rgba(80, 80, 80, 0.42);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
     padding: 5vmax;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -459,30 +682,66 @@ body::after {
     }
 }
 
-.back-to-top {
+.scroll-hint,
+.scroll-top-link {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    right: 34px;
+    bottom: 34px;
+    z-index: 9999;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: "Red Hat Display", sans-serif;
     font-size: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
-    opacity: 0.85;
+    line-height: 1;
+    text-decoration: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
 }
 
-.back-to-top:hover {
+.scroll-hint {
+    background: transparent;
+    pointer-events: none;
+    animation: scrollHint 1.35s ease-in-out infinite;
+}
+
+.scroll-top-link {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.scroll-top-link:hover {
     transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.scroll-hint.is-hidden,
+.scroll-top-link.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+@keyframes scrollHint {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-hint {
+        animation: none;
+    }
 }
 
 /* Ajustements pour mobile */
@@ -505,13 +764,55 @@ body::after {
         gap: 12px;
     }
 
+    .pve-dropdown {
+        flex-direction: column;
+        align-items: center;
+    }
+
     button {
-        width: 100vb;
+        width: min(80vw, 260px);
         max-width: 260px;
         height: auto;
         padding: 12px 18px;
         font-size: 22px;
 
+    }
+
+    .pve-mini {
+        position: static;
+        width: min(80vw, 220px);
+        height: auto;
+        min-height: 0;
+        padding: 12px 18px;
+        margin-top: 10px;
+        font-size: 22px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+    .pve-label {
+        transform: translateX(0);
+        transition-delay: 0s;
+    }
+
+    .pve-caret {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+
+    .pve-dropdown:hover .pve-mini,
+    .pve-dropdown:focus-within .pve-mini {
+        transform: translateY(0) scale(1);
+    }
+
+    .scroll-hint,
+    .scroll-top-link {
+        right: 20px;
+        bottom: 24px;
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
     }
     .footer {
         background: rgba(0, 0, 0, 0.6);

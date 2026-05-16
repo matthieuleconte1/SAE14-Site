@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body id="top">
-<header>
+<body>
+<header id="top">
  <div class="header-left">
     <a href="https://attenna.net">
         <img src="pictures/icon.png" alt="icon" id="icon">
@@ -22,11 +22,13 @@
 
         <div class="header-right">
         <a href="wg.html" class="vpn-circle" aria-label="VPN">
-            <svg viewBox="0 0 32 32" aria-hidden="true">
-                <circle class="vpn-icon-globe" cx="16" cy="16" r="10.2"></circle>
-                <path class="vpn-icon-grid" d="M7.2 16h17.6"></path>
-                <path class="vpn-icon-grid" d="M16 5.8c2.5 2.7 3.7 6.1 3.7 10.2S18.5 23.5 16 26.2"></path>
-                <path class="vpn-icon-grid" d="M16 5.8c-2.5 2.7-3.7 6.1-3.7 10.2s1.2 7.5 3.7 10.2"></path>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="vpn-icon-plug vpn-icon-lower" d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z"></path>
+                <path class="vpn-icon-plug vpn-icon-upper" d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z"></path>
+                <path class="vpn-icon-plug vpn-icon-lower" d="M3 21l2.5 -2.5"></path>
+                <path class="vpn-icon-plug vpn-icon-upper" d="M18.5 5.5l2.5 -2.5"></path>
+                <path class="vpn-icon-plug vpn-icon-lower vpn-icon-leg" d="M10 11l-2 2"></path>
+                <path class="vpn-icon-plug vpn-icon-lower vpn-icon-leg" d="M13 14l-2 2"></path>
             </svg>
         </a>
         <a href="HTML/Matthieu.html">
@@ -46,9 +48,17 @@
 </div>
 
 <div class="button">
-    <a href="https://pve.attenna.net" target="_blank">
-        <button class="orange">PVE</button>
-    </a>
+    <div class="pve-dropdown">
+        <a href="https://pve.attenna.net" target="_blank">
+            <button class="orange pve-button">
+                <span class="pve-label">PVE</span>
+                <svg class="pve-caret" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 9l6 6l6 -6"></path>
+                </svg>
+            </button>
+        </a>
+        <a href="https://pve2.attenna.net" class="pve-mini" target="_blank">Mini PVE</a>
+    </div>
     <a href="HTML/A-Propos.html">
         <button class="white">A Propos</button>
     </a>
@@ -59,7 +69,7 @@
         <button class="black">Mon Profil</button>
     </a>
 </div>
-    <div class="divider-white">
+    <div class="divider-white" id="content-start">
         <h2>A Propos du PVE</h2>
         <div class="row">
             <img src="pictures/Proxmox-logo.png" alt="Proxmox"/>
@@ -89,8 +99,8 @@
         <a href="mailto:matthieu.leconte@etu.unicaen.fr">Contactez-Moi !</a>
     </div>
 </footer>
-<a href="#top" class="back-to-top" aria-label="Revenir en haut">
-    ↑
-</a>
+<span class="scroll-hint" aria-hidden="true">↓</span>
+<a href="#top" class="scroll-top-link" aria-label="Remonter en haut de la page">↑</a>
+<script src="JS/scroll-arrows.js?v=4" defer></script>
 </body>
 </html>

@@ -132,6 +132,10 @@ h3 {
     margin: 20px;
 }
 
+.button a {
+    display: inline-flex;
+    text-decoration: none;
+}
 
 /* Auto hide while scrolling */
 .hide {
@@ -141,8 +145,11 @@ h3 {
 
 /* Base button styles */
 button {
-    border: 0;
-    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--button-border, rgba(255, 255, 255, 0.22));
+    border-radius: 28px;
     padding: 10px 30px;
     width: 200px;
     height: 100px;
@@ -150,46 +157,112 @@ button {
     font-size: 30px;
     font-family: "Momo Trust Display", sans-serif;
     font-weight: 400;
+    color: var(--button-color, #ffffff);
+    background: var(--button-bg, rgba(255, 255, 255, 0.12));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        inset 0 -20px 35px rgba(0, 0, 0, 0.16),
+        0 14px 34px rgba(0, 0, 0, 0.28);
     z-index: 2;
+    outline: none;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 34%),
+        radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.42), transparent 28%);
+    opacity: 0.42;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 30% 30%, var(--button-glow, rgba(255, 255, 255, 0.18)), transparent 34%),
+        radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.2), transparent 28%);
+    opacity: 0.34;
+    filter: blur(18px);
+    transform: translate(-12%, -8%) rotate(0deg);
+    animation: buttonGlowDrift 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 4px;
+}
+
+button:hover {
+    transform: translateY(-6px);
+    border-color: var(--button-border-hover, rgba(255, 255, 255, 0.5));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -18px 34px rgba(0, 0, 0, 0.12),
+        0 20px 42px rgba(0, 0, 0, 0.36),
+        0 0 26px var(--button-glow, rgba(255, 255, 255, 0.18));
+    filter: saturate(1.1);
+}
+
+button:hover::before {
+    opacity: 0.7;
+    transform: translateY(-8%);
+}
+
+button:hover::after {
+    opacity: 0.62;
+    animation-duration: 3.2s;
+}
+
+button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+@keyframes buttonGlowDrift {
+    from {
+        transform: translate(-14%, -10%) rotate(-8deg);
+    }
+    to {
+        transform: translate(10%, 8%) rotate(10deg);
+    }
 }
 
 /* Orange button */
 .orange {
-    background: linear-gradient(90deg, #f1a60a, #f46f03);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: background 0.5s ease, color 0.5s ease;
-}
-
-.orange:hover {
-    color: black;
-    background: white;
+    --button-bg: linear-gradient(135deg, rgba(255, 184, 38, 0.96), rgba(244, 88, 3, 0.94));
+    --button-color: #ffffff;
+    --button-border: rgba(255, 214, 133, 0.54);
+    --button-border-hover: rgba(255, 236, 180, 0.8);
+    --button-glow: rgba(244, 111, 3, 0.48);
 }
 
 /* Gray button */
 .gray {
-    background: linear-gradient(90deg, #545454, #2e2e2e);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: background 0.5s ease, color 0.5s ease;
-}
-
-.gray:hover {
-    background: white;
-    color: black;
+    --button-bg: linear-gradient(135deg, rgba(94, 94, 94, 0.8), rgba(23, 23, 23, 0.84));
+    --button-color: #ffffff;
+    --button-border: rgba(255, 255, 255, 0.22);
+    --button-border-hover: rgba(255, 255, 255, 0.48);
+    --button-glow: rgba(255, 255, 255, 0.2);
 }
 
 /* White button */
 .white {
-    background: linear-gradient(120deg, #8a8a8a, #b8b8b8);
-    backdrop-filter: blur(10px);
-    color: black;
-    transition: background 0.5s ease, color 0.5s ease;
-}
-
-.white:hover {
-    background: white;
-    color: black;
+    --button-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(164, 164, 164, 0.62));
+    --button-color: #111111;
+    --button-border: rgba(255, 255, 255, 0.62);
+    --button-border-hover: rgba(255, 255, 255, 0.92);
+    --button-glow: rgba(255, 255, 255, 0.36);
 }
 
 .centered-text {
@@ -349,6 +422,9 @@ body {
     body::after {
         animation: none;
     }
+    button::after {
+        animation: none;
+    }
 }
 
 /* Legibility */
@@ -358,9 +434,7 @@ body {
     }
 
     .orange {
-        background: linear-gradient(90deg, #f17e0a, #f44303);
-        color: white;
-        transition: opacity 0.8s ease, transform 0.65s ease;
+        --button-bg: linear-gradient(135deg, rgba(255, 135, 10, 0.96), rgba(244, 67, 3, 0.94));
     }
 }
 
@@ -462,7 +536,7 @@ header {
     }
 
     button {
-        width: 100vb;
+        width: min(80vw, 260px);
         max-width: 260px;
         height: auto;
         padding: 12px 18px;
